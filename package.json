@@ -1,0 +1,90 @@
+{
+  "name": "a-b-c",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "CI=TRUE react-scripts test --coverage --ci --reporters=default",
+    "eject": "react-scripts eject",
+    "lint": "eslint ./src --quiet",
+    "lint:fix": "eslint ./src --quiet --fix",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "build-storybook": "build-storybook -c .storybook -o storybook",
+    "test:coverage": "CI=TRUE react-scripts test --coverage",
+    "test:coverage:ratchet": "jest-coverage-ratchet",
+    "test:integration": "testcafe chrome:headless tests/**/*",
+    "test:watch": "react-scripts test",
+    "lighthouse": "mkdir -p lighthouse && lighthouse --output json --output html --output-path ./lighthouse/index.json"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^5.1.3",
+    "@storybook/addon-info": "^5.1.3",
+    "@storybook/addon-knobs": "^5.1.3",
+    "@storybook/addon-links": "^5.1.3",
+    "@storybook/react": "^5.1.3",
+    "babel-loader": "8.0.5",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "jest-coverage-ratchet": "^0.2.3",
+    "lighthouse": "^5.1.0",
+    "testcafe": "^1.2.0"
+  },
+  "cjx": {
+    "type": "react",
+    "version": "1.0.195"
+  },
+  "lighthouseConfig": {
+    "first-meaningful-paint": 3200,
+    "estimated-input-latency": 4700
+  },
+  "engines": {
+    "node": ">=12.2.0",
+    "yarn": "1.13.0"
+  },
+  "author": "hi@nextmoov.be",
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.stories.js",
+      "!src/serviceWorker.js",
+      "!src/index.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
+    "coverageReporters": [
+      "json-summary",
+      "json",
+      "lcov",
+      "text",
+      "clover"
+    ]
+  }
+}

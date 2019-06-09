@@ -1,33 +1,188 @@
-.App {
-  text-align: center;
+
+/**
+ * Utilities (utiliy classes)
+ */
+.flx {
+  display: flex;
+}
+.flx-centered {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.grid {
+  display: grid;
+  grid-gap: 4px;
+  grid-row-gap: 4px;
+  /* grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(256px, 1fr)); */
+
+  grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  grid-template-rows: auto;
+  /* grid-auto-rows: repeat(auto-fit, minmax(256px, 1fr));
+  /* grid-template-rows: repeat(auto-fill, minmax(256px, 1fr)); */
+  /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: minmax(150px, auto); */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.visible.not-visible {
+  transition: opacity 1450ms;
+  opacity: 1;
+}
+.not-visible {
+  transition: opacity 1450ms;
+  opacity: 0;
+}
+
+
+.grid > * { width: 100%; height: 100% }
+/*
+square
+portrait
+landscape
+*/
+.grid > *:last-of-type {
+    /* grid-column-end: -1; */
+}
+.grid > *:last-child {
+  /* grid-column-end: -1; */
+  /* grid-column-start: 0; */
+  /* grid-column: 1 / span 999; */
+  /* width: 100%; */
+}
+
+@-webkit-keyframes myCoolAnimation {
+  0% { opacity: 1 }
+  100% { opacity: 0 }
+}
+
+
+@keyframes pulseIn {
+    0% {  opacity: 1 }
+    16% { opacity: .8 }
+    100% {  opacity: 1 }
+  }
+
+
+.placeholder {
+  background: linear-gradient(
+    -30deg,
+      rgba(206, 206, 206, 1) ,
+      rgba(206, 206, 206, .4)
+  );
+  animation: pulseIn 1s infinite;
+/*
+  background: #cecece;
+  -webkit-animation: pulseIn 1s infinite;
+  -moz-keyframes: pulseIn 1s infinite;
+  animation: pulseIn 1s infinite;
+  */
+}
+
+
+@media (min-width: 768px) {
+
+  .grid > * { grid-row-end: span 1; grid-column-end: span 1 }
+  /* .grid > .square { grid-row-end: span 2; grid-column-end: span 2 }
+  .grid > .portrait { grid-row-end: span 3; grid-column-end: span 2 }
+  .grid > .tall { grid-row-end: span 2; grid-column-end: span 1 }
+  .grid > .landscape { grid-column-end: span 3; grid-row-end: span 2 }
+  .grid > .wide { grid-row-end: span 1; grid-column-end: span 1 } */
+
+  .grid {
+    grid-auto-flow: row dense;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(210px, 1fr));
+    /* grid-auto-rows: 210px; */
+    /* grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); */
+    /* grid-auto-rows: auto */
+  }
+}
+
+
+@media (min-width: 1200px) {
+
+  .grid > * { grid-row-end: span 1; grid-column-end: span 1 }
+  /* .grid > .square { grid-row-end: span 2; grid-column-end: span 2 }
+  .grid > .portrait { grid-row-end: span 3; grid-column-end: span 2 }
+  .grid > .tall { grid-row-end: span 2; grid-column-end: span 1 }
+  .grid > .landscape { grid-column-end: span 3; grid-row-end: span 2 }
+  .grid > .wide { grid-row-end: span 1; grid-column-end: span 1 } */
+
+  .grid {
+    grid-auto-flow: row dense;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(320px, 1fr));
+    /* grid-auto-rows: 210px; */
+    /* grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); */
+    /* grid-auto-rows: auto */
+  }
+}
+
+/* @media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    grid-auto-rows: 190px;
+  }
+} */
+
+
+/**
+ * Styling
+ */
+
+html, body, #root {
+  height: 100%;
+}
+
+html, body, #root, ul, li, figure {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.layout_appLayoutParent {
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.layout_appLayoutMain {
+  flex-grow: 9
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header {
+  height: 48px;
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),
+              0px 4px 5px 0px rgba(0,0,0,0.14),
+              0px 1px 10px 0px rgba(0,0,0,0.12)
+}
+
+.section {
+  height: 100%;
+  padding: 32px;
+  width: calc(100% - 64px);
+  max-width: 1350px;
+  margin: 0 auto;
+  position: relative;
+  top: 32px;
+}
+
+.footer {
+  margin-top: 64px;
+  height: 42px;
+}
+
+.nav-item {
+  padding: 8px 16px;
+}
+
+.img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
